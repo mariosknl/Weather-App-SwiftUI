@@ -14,6 +14,16 @@ struct WeatherCard: View {
         "https:\(weather.current.condition.icon)"
     }
     
+    @AppStorage("useFahrenheit") private var useFahrenheit = false
+    
+    var displayTemp: String {
+        useFahrenheit ? String(format: "%.1f°F", weather.current.tempF) : String(format: "%.1f°C", weather.current.tempC)
+    }
+    
+    var displayFeelsLike: String {
+        useFahrenheit ? String(format: "%.1f°F", weather.current.feelslikeF) : String(format: "%.1f°C", weather.current.feelslikeC)
+    }
+    
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: urlString)) { image in
@@ -29,7 +39,7 @@ struct WeatherCard: View {
                 .font(.title2)
                 .bold()
             
-            Text("\(weather.current.tempC, specifier: "%.1f")°C")
+            Text(displayTemp)
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(.white)
@@ -38,7 +48,7 @@ struct WeatherCard: View {
                 .font(.headline)
                 .foregroundStyle(.white.opacity(0.9))
             
-            Text("Feels like \(weather.current.feelslikeC, specifier: "%.1f")°C")
+            Text(displayFeelsLike)
                 .font(.headline)
                 .foregroundStyle(.white.opacity(0.9))
         }
