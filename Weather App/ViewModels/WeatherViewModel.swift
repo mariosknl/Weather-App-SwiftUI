@@ -48,13 +48,16 @@ class WeatherViewModel {
     func fetch() async {
         do {
             weather = try await fetchWeatherData(for: city)
-            errorMessage = "Successfully fetched weather for \(city.capitalized)."
+            errorMessage = nil
         } catch {
             if let WeatherError = error as? WeatherError {
                 errorMessage = WeatherError.localizedDescription
             } else {
                 errorMessage = "Unexpected error \(error.localizedDescription)"
             }
+            
+            // Reset weather
+            weather = nil
         }
     }
 }
