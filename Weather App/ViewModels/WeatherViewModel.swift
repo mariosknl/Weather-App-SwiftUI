@@ -43,5 +43,19 @@ class WeatherViewModel {
         }
         
     }
+    
+    @MainActor
+    func fetch(city: String) async {
+        do {
+            weather = try await fetchWeatherData(for: city)
+            errorMessage = "Successfully fetched weather for \(city.capitalized)."
+        } catch {
+            if let WeatherError = error as? WeatherError {
+                errorMessage = WeatherError.localizedDescription
+            } else {
+                errorMessage = "Unexpected error \(error.localizedDescription)"
+            }
+        }
+    }
 }
 
