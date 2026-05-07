@@ -9,19 +9,18 @@ import SwiftUI
 
 struct WeatherCard: View {
     let weather: WeatherResponse
+    let useFahrenheit: Bool
     
     var urlString: String {
         "https:\(weather.current.condition.icon)"
     }
-    
-    @AppStorage("useFahrenheit") private var useFahrenheit = false
     
     var displayTemp: String {
         useFahrenheit ? String(format: "%.1f°F", weather.current.tempF) : String(format: "%.1f°C", weather.current.tempC)
     }
     
     var displayFeelsLike: String {
-        useFahrenheit ? String(format: "%.1f°F", weather.current.feelslikeF) : String(format: "%.1f°C", weather.current.feelslikeC)
+        useFahrenheit ? String(format: "Feels like %.1f°F", weather.current.feelslikeF) : String(format: "Feels like %.1f°C", weather.current.feelslikeC)
     }
     
     var body: some View {
