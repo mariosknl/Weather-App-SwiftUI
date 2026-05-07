@@ -17,8 +17,9 @@ struct WeatherView: View {
                     .padding(.horizontal)
                 
                 Button {
-                    // TODO: Fetch weather from View model
-//                    vm.fetchWeather
+                    Task {
+                        await vm.fetch()
+                    }
                 } label: {
                     Label("Get Weather", systemImage: "cloud.sun.fill")
                 }.buttonStyle(.borderedProminent)

@@ -29,7 +29,7 @@ struct WeatherCard: View {
                 .font(.title2)
                 .bold()
             
-            Text("\(weather.current.tempC, specifier: "$.1f")°C")
+            Text("\(weather.current.tempC, specifier: "%.1f")°C")
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(.white)
@@ -38,7 +38,7 @@ struct WeatherCard: View {
                 .font(.headline)
                 .foregroundStyle(.white.opacity(0.9))
             
-            Text("Feels like \(weather.current.feelslikeC, specifier: "$.1f")°C")
+            Text("Feels like \(weather.current.feelslikeC, specifier: "%.1f")°C")
                 .font(.headline)
                 .foregroundStyle(.white.opacity(0.9))
         }

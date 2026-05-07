@@ -45,7 +45,7 @@ class WeatherViewModel {
     }
     
     @MainActor
-    func fetch(city: String) async {
+    func fetch() async {
         do {
             weather = try await fetchWeatherData(for: city)
             errorMessage = "Successfully fetched weather for \(city.capitalized)."
